@@ -4,6 +4,7 @@ import { decodeToken } from "../helpers/decodeToken";
 const useCurrentUser = () => {
     const [userData, setUserData] = useState(null);
     const [accessToken, setAccessToken] = useState(null);
+    const [loading, setLoading] = useState(true);
     const updateUserData = () => {
         const token = localStorage.getItem("accessToken");
         if (token) {
@@ -14,6 +15,7 @@ const useCurrentUser = () => {
             setUserData(null);
             setAccessToken(null);
         }
+        setLoading(false);
     };
 
     useEffect(() => {
@@ -35,6 +37,7 @@ const useCurrentUser = () => {
         name: userData?.name,
         role: userData?.role,
         token: accessToken,
+        loading,
     };
 };
 
