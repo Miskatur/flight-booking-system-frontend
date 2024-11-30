@@ -4,9 +4,9 @@ import Footer from "../shared/footer";
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className="">
       <Header />
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-7xl mx-auto min-h-[80vh]">
         <Outlet />
       </div>
       <Footer />
