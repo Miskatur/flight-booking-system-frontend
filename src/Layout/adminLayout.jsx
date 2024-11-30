@@ -1,5 +1,6 @@
 import React from "react";
 import Sidebar from "../shared/sidebar";
+import { Outlet } from "react-router-dom";
 
 const AdminLayout = ({ children }) => {
   return (
@@ -7,7 +8,9 @@ const AdminLayout = ({ children }) => {
       {/* sidebar */}
       <Sidebar />
       {/* outlet */}
-      <div className="p-4 overflow-hidden ">{children}</div>
+      <div className="p-4 overflow-hidden ">
+        <Outlet />
+      </div>
     </div>
   );
 };

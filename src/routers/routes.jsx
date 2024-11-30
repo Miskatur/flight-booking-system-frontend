@@ -6,6 +6,9 @@ import Register from "../pages/register";
 import AdminLayout from "../Layout/adminLayout";
 import Overview from "../pages/admin-dashboard/overview";
 import ProtectedRoute from "./protectedRoute";
+import ErrorPage from "../pages/errorPage";
+import Flights from "../pages/admin-dashboard/flights";
+import Bookings from "../pages/admin-dashboard/bookings";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +41,19 @@ const router = createBrowserRouter([
         path: "",
         element: <Overview></Overview>,
       },
+      {
+        path: "flights",
+        element: <Flights></Flights>,
+      },
+      {
+        path: "bookings",
+        element: <Bookings></Bookings>,
+      },
     ],
+  },
+  {
+    path: "/*",
+    element: <ErrorPage></ErrorPage>,
   },
 ]);
 

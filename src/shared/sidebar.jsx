@@ -1,4 +1,4 @@
-import { ClipboardList, LayoutDashboard, Menu } from "lucide-react";
+import { LayoutDashboard, Menu, PlaneIcon, TicketsPlane } from "lucide-react";
 import React, { useState } from "react";
 import useCurrentUser from "../hook/useCurrentuser";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,9 +11,14 @@ const adminRoutes = [
     to: "/admin/dashboard",
   },
   {
-    label: "Orders",
-    icon: <ClipboardList size={16} />,
-    to: "/super-admin/orders",
+    label: "Flights",
+    icon: <PlaneIcon size={16} />,
+    to: "/admin/dashboard/flights",
+  },
+  {
+    label: "Bookings",
+    icon: <TicketsPlane size={16} />,
+    to: "/admin/dashboard/bookings",
   },
 ];
 const Sidebar = () => {
@@ -79,7 +84,7 @@ const Sidebar = () => {
                       location?.pathname === item?.to,
                   }
                 )}
-                onClick={() => setIsSidebarOpen(false)} // Close sidebar on menu click
+                onClick={() => setIsSidebarOpen(false)} 
               >
                 <p>{item.label}</p>
                 {item.icon}
@@ -92,7 +97,7 @@ const Sidebar = () => {
           <button
             onClick={() => {
               handleLogout();
-              setIsSidebarOpen(false); // Close sidebar on logout
+              setIsSidebarOpen(false); 
             }}
             className="w-full px-4 py-1 bg-primary text-white rounded"
           >
