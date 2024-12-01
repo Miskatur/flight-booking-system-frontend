@@ -12,6 +12,15 @@ const BookingSlice = apiSlice.injectEndpoints({
             }),
             providesTags: ["Flights"],
         }),
+        getAFlightInfo: builder.query({
+            query: ({ token, id }) => ({
+                url: `/flights/${id}`,
+                method: "GET",
+                headers: {
+                    authorization: token,
+                },
+            }),
+        }),
 
         addAFlight: builder.mutation({
             query: ({ token, payload }) => ({
@@ -25,9 +34,12 @@ const BookingSlice = apiSlice.injectEndpoints({
             invalidatesTags: ["Flights"],
         }),
         updateAFlight: builder.mutation({
-            query: ({ id, payload }) => ({
-                url: `/packages/${id}`,
+            query: ({ token, id, payload }) => ({
+                url: `/flights/${id}`,
                 method: "PATCH",
+                headers: {
+                    authorization: token,
+                },
                 body: payload,
             }),
 
@@ -50,7 +62,7 @@ const BookingSlice = apiSlice.injectEndpoints({
 export const {
     useAddAFlightMutation,
     useGetAllFlightsQuery,
-    useGetAllAvailableFlightsQuery,
     useUpdateAFlightMutation,
     useDeleteAFlightMutation,
+    useGetAFlightInfoQuery
 } = BookingSlice;

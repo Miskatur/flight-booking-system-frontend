@@ -53,7 +53,7 @@ const Flights = () => {
   const handleDeleteAFlight = async (id) => {
     setDeletingId(id);
     try {
-      const res = await deleteABooking({ token, id });
+      const res = await deleteAFlight({ token, id });
       if (res?.data?.success) {
         toast.success(res?.data?.message);
       } else {
@@ -138,7 +138,7 @@ const Flights = () => {
                       {info?.price}TK
                     </TableCell>
                     <TableCell className="whitespace-nowrap text-muted-foreground px-4 ">
-                      <Link to={`/admin/flights/update-flight/${info?.id}`}>
+                      <Link to={`/admin/dashboard/flights/update-flight/${info?.id}`}>
                         <button
                           type="button"
                           className="flex items-center font-medium hover:text-primary"

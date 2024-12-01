@@ -10,6 +10,7 @@ import ErrorPage from "../pages/errorPage";
 import Flights from "../pages/admin-dashboard/flights";
 import Bookings from "../pages/admin-dashboard/bookings";
 import AddFlight from "../pages/admin-dashboard/flights/addFlight";
+import UpdateFlight from "../pages/admin-dashboard/flights/updateFlight";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
       {
         path: "flights/add-flight",
         element: <AddFlight></AddFlight>,
+      },
+      {
+        path: "flights/update-flight/:id",
+        element: <UpdateFlight></UpdateFlight>,
       },
     ],
   },
