@@ -8,7 +8,6 @@ const UserSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: payload
             }),
-            providesTags: [""],
         }),
         login: builder.mutation({
             query: (payload) => ({
@@ -16,9 +15,31 @@ const UserSlice = apiSlice.injectEndpoints({
                 method: "POST",
                 body: payload
             }),
-            providesTags: [""],
+            providesTags: ["User"],
+        }),
+        changePassword: builder.mutation({
+            query: ({ token, payload }) => ({
+                url: `/change-password`,
+                method: "PATCH",
+                headers: {
+                    authorization: token,
+                },
+                body: payload
+            }),
+            invalidatesTags: ["User"],
+        }),
+        updateProfile: builder.mutation({
+            query: ({ token, payload }) => ({
+                url: `/update`,
+                method: "PATCH",
+                headers: {
+                    authorization: token,
+                },
+                body: payload
+            }),
+            invalidatesTags: ["User"],
         }),
     }),
 });
 
-export const { useRegisterMutation, useLoginMutation } = UserSlice;
+export const { useRegisterMutation, useLoginMutation, useChangePasswordMutation, useUpdateProfileMutation } = UserSlice;

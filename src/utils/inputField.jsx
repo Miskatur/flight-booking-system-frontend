@@ -11,6 +11,8 @@ const InputField = ({
   classes,
   required = false,
   autocomplete,
+  readOnly = false,
+  disabled = false,
 }) => {
   return (
     <div className="mb-4">
@@ -29,6 +31,8 @@ const InputField = ({
         placeholder={placeholder}
         required={required}
         autoComplete={autocomplete}
+        readOnly={readOnly}
+        disabled={disabled}
       />
     </div>
   );

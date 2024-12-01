@@ -3,11 +3,25 @@ import apiSlice from "./api-slice";
 const BookingSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllFlights: builder.query({
-            query: ({ page, limit, allFlights, origin, destination, date }) => ({
-                url: `/flights?page=${page}&limit=${limit}&admin=${allFlights}&origin=${origin}&destination=${destination}&date=${date}`,
-                method: "GET",
+            query: ({ page, limit, allFlights, origin, destination, date }) => {
+                const params = new URLSearchParams();
 
-            }),
+                // Always include page and limit
+                params.append("page", page.toString());
+                params.append("limit", limit.toString());
+                params.append("admin", allFlights);
+
+                // Conditionally add other parameters
+                if (origin) params.append("origin", origin);
+                if (destination) params.append("destination", destination);
+                if (date) params.append("date", date);
+
+                return {
+                    url: `/flights?${params.toString()}`,
+                    method: "GET",
+                };
+
+            },
             providesTags: ["Flights"],
         }),
         getAllLocations: builder.query({
@@ -33,7 +47,7 @@ const BookingSlice = apiSlice.injectEndpoints({
                 },
                 body: payload,
             }),
-            invalidatesTags: ["Flights"],
+            invalidatesTags: ["Flights", "Overview"],
         }),
         updateAFlight: builder.mutation({
             query: ({ token, id, payload }) => ({
@@ -45,7 +59,7 @@ const BookingSlice = apiSlice.injectEndpoints({
                 body: payload,
             }),
 
-            invalidatesTags: ["Flights"],
+            invalidatesTags: ["Flights", "Overview"],
         }),
         deleteAFlight: builder.mutation({
             query: ({ token, id }) => ({
@@ -55,7 +69,7 @@ const BookingSlice = apiSlice.injectEndpoints({
                     authorization: token,
                 },
             }),
-            invalidatesTags: ["Flights"],
+            invalidatesTags: ["Flights", "Overview"],
         }),
 
     }),

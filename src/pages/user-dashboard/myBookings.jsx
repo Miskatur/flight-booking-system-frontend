@@ -40,7 +40,7 @@ const MyBookings = () => {
           "text-2xl md:text-4xl font-semibold bg-white p-2 lg:p-4 text-primary rounded"
         }
       />
-      <div className="my-5">
+      <div className="my-5 min-h-[60vh]">
         <Table>
           <TableHeader>
             <TableRow>

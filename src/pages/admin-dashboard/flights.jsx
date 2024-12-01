@@ -137,7 +137,9 @@ const Flights = () => {
                       {info?.price}TK
                     </TableCell>
                     <TableCell className="whitespace-nowrap text-muted-foreground px-4 ">
-                      <Link to={`/admin/dashboard/flights/update-flight/${info?.id}`}>
+                      <Link
+                        to={`/admin/dashboard/flights/update-flight/${info?.id}`}
+                      >
                         <button
                           type="button"
                           className="flex items-center font-medium hover:text-primary"

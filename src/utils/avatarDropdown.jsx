@@ -1,5 +1,12 @@
 /* eslint-disable react/prop-types */
-import { House, Power, Tags, User } from "lucide-react";
+import {
+  House,
+  Power,
+  Tags,
+  User,
+  UserCog,
+  UserRoundPenIcon,
+} from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,14 +22,19 @@ const AvatarDropdown = ({ name }) => {
   const dropDownRef = useRef(null);
   const items = [
     {
-      name: "Profile",
+      name: "My Bookings",
       icon: <House size={20} />,
+      url: "/user/my-bookings",
+    },
+    {
+      name: "Profile",
+      icon: <User size={20} />,
       url: "/user/profile",
     },
     {
-      name: "My Bookings",
-      icon: <User size={20} />,
-      url: "/user/my-bookings",
+      name: "Change Password",
+      icon: <UserCog size={20} />,
+      url: "/user/edit/password",
     },
   ];
 

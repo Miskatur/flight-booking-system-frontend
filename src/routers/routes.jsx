@@ -15,6 +15,9 @@ import SearchResult from "../pages/searchResult";
 import FlightDetails from "../pages/flightDetails";
 import PrivateRoute from "./privateRoute";
 import MyBookings from "../pages/user-dashboard/myBookings";
+import MyProfile from "../pages/user-dashboard/myProfile";
+import EditProfile from "../pages/user-dashboard/editProfile";
+import ChangePassword from "../pages/user-dashboard/changePassword";
 
 const router = createBrowserRouter([
   {
@@ -50,6 +53,30 @@ const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyBookings />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/user/profile",
+        element: (
+          <PrivateRoute>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/user/edit/profile",
+        element: (
+          <PrivateRoute>
+            <EditProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/user/edit/password",
+        element: (
+          <PrivateRoute>
+            <ChangePassword />
           </PrivateRoute>
         ),
       },

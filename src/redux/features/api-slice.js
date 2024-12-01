@@ -9,7 +9,7 @@ const apiSlice = createApi({
     reducerPath: "api",
     baseQuery: baseQuery,
     endpoints: () => ({}),
-    tagTypes: ["Bookings", "Flights"],
+    tagTypes: ["Bookings", "Flights", "User", "Overview"],
 });
 
 export default apiSlice;

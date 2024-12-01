@@ -37,8 +37,10 @@ const useCurrentUser = () => {
         name: userData?.name,
         role: userData?.role,
         email: userData?.email,
+        phone: userData?.phone,
         token: accessToken,
         loading,
+        updateUserData
     };
 };
 

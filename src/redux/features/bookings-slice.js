@@ -20,7 +20,7 @@ const BookingSlice = apiSlice.injectEndpoints({
                     authorization: token,
                 },
             }),
-            invalidatesTags: ["Bookings"],
+            invalidatesTags: ["Bookings", "Overview"],
         }),
         deleteABooking: builder.mutation({
             query: ({ token, id }) => ({
@@ -30,7 +30,7 @@ const BookingSlice = apiSlice.injectEndpoints({
                     authorization: token,
                 },
             }),
-            invalidatesTags: ["Bookings"],
+            invalidatesTags: ["Bookings", "Overview"],
         }),
         addABooking: builder.mutation({
             query: ({ token, payload }) => ({
