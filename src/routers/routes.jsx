@@ -11,6 +11,7 @@ import Flights from "../pages/admin-dashboard/flights";
 import Bookings from "../pages/admin-dashboard/bookings";
 import AddFlight from "../pages/admin-dashboard/flights/addFlight";
 import UpdateFlight from "../pages/admin-dashboard/flights/updateFlight";
+import SearchResult from "../pages/searchResult";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>,
+      },
+      {
+        path: "/search",
+        element: <SearchResult></SearchResult>,
       },
     ],
   },

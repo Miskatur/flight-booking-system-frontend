@@ -39,7 +39,6 @@ const Flights = () => {
   const [deletingId, setDeletingId] = useState(null);
   const { token } = useCurrentUser();
   const { data, isLoading } = useGetAllFlightsQuery({
-    token,
     page,
     limit,
     allFlights: activeRoute,

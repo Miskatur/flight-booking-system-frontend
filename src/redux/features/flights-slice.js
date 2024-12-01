@@ -3,22 +3,24 @@ import apiSlice from "./api-slice";
 const BookingSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getAllFlights: builder.query({
-            query: ({ token, page, limit, allFlights }) => ({
-                url: `/flights?page=${page}&limit=${limit}&admin=${allFlights}`,
+            query: ({ page, limit, allFlights, origin, destination, date }) => ({
+                url: `/flights?page=${page}&limit=${limit}&admin=${allFlights}&origin=${origin}&destination=${destination}&date=${date}`,
                 method: "GET",
-                headers: {
-                    authorization: token,
-                },
+
             }),
             providesTags: ["Flights"],
         }),
+        getAllLocations: builder.query({
+            query: () => ({
+                url: `/flights/location`,
+                method: "GET",
+
+            }),
+        }),
         getAFlightInfo: builder.query({
-            query: ({ token, id }) => ({
+            query: ({ id }) => ({
                 url: `/flights/${id}`,
                 method: "GET",
-                headers: {
-                    authorization: token,
-                },
             }),
         }),
 
@@ -64,5 +66,6 @@ export const {
     useGetAllFlightsQuery,
     useUpdateAFlightMutation,
     useDeleteAFlightMutation,
-    useGetAFlightInfoQuery
+    useGetAFlightInfoQuery,
+    useGetAllLocationsQuery
 } = BookingSlice;

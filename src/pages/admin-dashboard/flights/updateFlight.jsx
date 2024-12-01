@@ -16,7 +16,6 @@ const UpdateFlight = () => {
   const { id } = useParams();
   const { token } = useCurrentUser();
   const { data, isLoading } = useGetAFlightInfoQuery({
-    token,
     id,
   });
 
