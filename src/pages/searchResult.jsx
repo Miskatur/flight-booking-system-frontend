@@ -7,6 +7,7 @@ import {
 import { toast } from "sonner";
 import SingleResult from "../components/searchResult/singleResult";
 import Pagination from "../utils/pagination";
+import Spinner from "../shared/loader";
 
 const SearchResult = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -41,7 +42,7 @@ const SearchResult = () => {
     setSearchParams({ origin, destination, date });
   };
   return (
-    <div className="max-w-7xl mx-auto p-6 ">
+    <div className="max-w-7xl mx-auto py-6 px-2">
       <form className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-8 bg-white p-5 rounded-lg">
         <div>
           <label className="block font-medium text-lg">From</label>
@@ -116,7 +117,9 @@ const SearchResult = () => {
       </form>
       <hr className="h-[1px] mb-8 bg-primary" />
       {isLoading ? (
-        <p>Loading...</p>
+        <div className="h-screen">
+          <Spinner />
+        </div>
       ) : isError ? (
         <p>Error loading flights</p>
       ) : (

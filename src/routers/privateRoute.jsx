@@ -2,7 +2,7 @@ import React from "react";
 import useCurrentUser from "../hook/useCurrentuser";
 import { useLocation, useNavigate } from "react-router-dom";
 import Spinner from "../shared/loader";
-const ProtectedRoute = ({ children }) => {
+const PrivateRoute = ({ children }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { role, loading } = useCurrentUser();
@@ -10,12 +10,12 @@ const ProtectedRoute = ({ children }) => {
     return <Spinner />;
   }
 
-  if (!role || role !== "ADMIN") {
-    navigate("/signin", { replace: true, state: { from: location } });
+  if (!role || role !== "USER") {
+    navigate("/signin", { replace: true, state: { from: location.pathname } });
     return null;
   }
 
   return <>{children}</>;
 };
 
-export default ProtectedRoute;
+export default PrivateRoute;

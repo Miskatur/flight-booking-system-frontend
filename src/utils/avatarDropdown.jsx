@@ -15,19 +15,14 @@ const AvatarDropdown = ({ name }) => {
   const dropDownRef = useRef(null);
   const items = [
     {
-      name: "Home",
-      icon: <House size={20} />,
-      url: "/",
-    },
-    {
       name: "Profile",
-      icon: <User size={20} />,
+      icon: <House size={20} />,
       url: "/user/profile",
     },
     {
-      name: "Coupons & Offers",
-      icon: <Tags size={20} />,
-      url: "/coupons-and-offers",
+      name: "My Bookings",
+      icon: <User size={20} />,
+      url: "/user/my-bookings",
     },
   ];
 

@@ -36,6 +36,7 @@ const useCurrentUser = () => {
     return {
         name: userData?.name,
         role: userData?.role,
+        email: userData?.email,
         token: accessToken,
         loading,
     };

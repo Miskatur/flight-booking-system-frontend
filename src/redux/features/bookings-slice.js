@@ -32,6 +32,17 @@ const BookingSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Bookings"],
         }),
+        addABooking: builder.mutation({
+            query: ({ token, payload }) => ({
+                url: `/bookings`,
+                method: "POST",
+                headers: {
+                    authorization: token,
+                },
+                body: payload
+            }),
+            invalidatesTags: ["Bookings"],
+        }),
 
     }),
 });
@@ -39,5 +50,6 @@ const BookingSlice = apiSlice.injectEndpoints({
 export const {
     useGetAllBookingsQuery,
     useCancelABookingMutation,
-    useDeleteABookingMutation
+    useDeleteABookingMutation,
+    useAddABookingMutation
 } = BookingSlice;

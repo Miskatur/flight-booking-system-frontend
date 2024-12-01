@@ -1,12 +1,12 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useLoginMutation } from "../../redux/features/user-slice";
 import { toast } from "sonner";
 
 const LoginForm = () => {
   const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const handleLoginForm = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -21,7 +21,8 @@ const LoginForm = () => {
         localStorage.setItem("accessToken", res?.data?.data?.accessToken);
         toast.success(res?.data?.message);
         window.dispatchEvent(new Event("storage"));
-        return navigate("/");
+        const from = location.state?.from || "/";
+        return navigate(from, { replace: true });
       } else {
         toast.error(res?.error?.data?.message);
       }

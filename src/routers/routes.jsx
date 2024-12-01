@@ -12,6 +12,9 @@ import Bookings from "../pages/admin-dashboard/bookings";
 import AddFlight from "../pages/admin-dashboard/flights/addFlight";
 import UpdateFlight from "../pages/admin-dashboard/flights/updateFlight";
 import SearchResult from "../pages/searchResult";
+import FlightDetails from "../pages/flightDetails";
+import PrivateRoute from "./privateRoute";
+import MyBookings from "../pages/user-dashboard/myBookings";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,22 @@ const router = createBrowserRouter([
       {
         path: "/search",
         element: <SearchResult></SearchResult>,
+      },
+      {
+        path: "/flight/:id",
+        element: (
+          <PrivateRoute>
+            <FlightDetails></FlightDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/user/my-bookings",
+        element: (
+          <PrivateRoute>
+            <MyBookings />
+          </PrivateRoute>
+        ),
       },
     ],
   },
