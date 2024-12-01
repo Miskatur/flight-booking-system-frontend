@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import DashboardHeader from "../../utils/dashboardHeader";
 import ProductRoute from "../../components/flights/productRoute";
 import { Link } from "react-router-dom";
-import { useGetAllFlightsQuery } from "../../redux/features/flights-slice";
+import {
+  useDeleteAFlightMutation,
+  useGetAllFlightsQuery,
+} from "../../redux/features/flights-slice";
 import useCurrentUser from "../../hook/useCurrentuser";
 import Pagination from "../../utils/pagination";
 import {
@@ -41,9 +44,30 @@ const Flights = () => {
     limit,
     allFlights: activeRoute,
   });
-
+  const [deleteAFlight, { isLoading: deleteLoading }] =
+    useDeleteAFlightMutation();
   const handlePageChange = (newPage) => {
     setPage(newPage);
+  };
+
+  const handleDeleteAFlight = async (id) => {
+    setDeletingId(id);
+    try {
+      const res = await deleteABooking({ token, id });
+      if (res?.data?.success) {
+        toast.success(res?.data?.message);
+      } else {
+        toast.error(
+          res?.error?.data?.message ||
+            "Something went wrong! Please try again later."
+        );
+      }
+    } catch (error) {
+      console.log("error", error);
+      toast.error("Something went wrong! Please try again later.");
+    } finally {
+      setDeletingId(null);
+    }
   };
   return (
     <div>
@@ -59,7 +83,7 @@ const Flights = () => {
             activeRoute={activeRoute}
             setActiveRoute={setActiveRoute}
           />
-          <Link to={`/admin/flights/add-flight`}>
+          <Link to={`/admin/dashboard/flights/add-flight`}>
             <button
               type="button"
               className="bg-primary text-white px-4 py-2 rounded"
@@ -130,7 +154,7 @@ const Flights = () => {
                         <button
                           className="flex items-center font-medium hover:text-primary"
                           type="button"
-                          // onClick={() => handleDeleteBooking(info?._id)}
+                          onClick={() => handleDeleteAFlight(info?._id)}
                         >
                           <Trash2 size={20} className="mr-1 " /> Delete
                         </button>

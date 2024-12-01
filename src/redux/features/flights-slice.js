@@ -16,7 +16,7 @@ const BookingSlice = apiSlice.injectEndpoints({
         addAFlight: builder.mutation({
             query: ({ token, payload }) => ({
                 url: `/flights`,
-                method: "DELETE",
+                method: "POST",
                 headers: {
                     authorization: token,
                 },
