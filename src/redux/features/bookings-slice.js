@@ -43,7 +43,16 @@ const BookingSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ["Bookings"],
         }),
-
+        getBookingsByUserID: builder.query({
+            query: ({ token }) => ({
+                url: `/bookings/user`,
+                method: "GET",
+                headers: {
+                    authorization: token,
+                },
+            }),
+            providesTags: ["Bookings"],
+        }),
     }),
 });
 
@@ -51,5 +60,6 @@ export const {
     useGetAllBookingsQuery,
     useCancelABookingMutation,
     useDeleteABookingMutation,
-    useAddABookingMutation
+    useAddABookingMutation,
+    useGetBookingsByUserIDQuery
 } = BookingSlice;

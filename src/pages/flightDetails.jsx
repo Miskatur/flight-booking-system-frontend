@@ -75,7 +75,7 @@ const FlightDetails = () => {
     );
   };
   return (
-    <div className="max-w-7xl mx-auto py-6 px-2">
+    <div className="max-w-7xl mx-auto py-6 lg:px-0">
       <div className="my-3">
         <Breadcrumbs
           currentPath={`${data?.data?.airline} - ${data?.data?.flight_number}`}
